@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <script type="text/javascript">
+                        PrimeFaces.locales ['de'] = {
+                            closeText: 'Schließen',
+                            prevText: 'Zurück',
+                            nextText: 'Weiter',
+                            monthNames: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+                            monthNamesShort: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+                            dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+                            dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fre', 'Sam'],
+                            dayNamesMin: ['S', 'M', 'D', 'M ', 'D', 'F ', 'S'],
+                            weekHeader: 'Woche',
+                            firstDay: 1,
+                            isRTL: false,
+                            showMonthAfterYear: false,
+                            yearSuffix: '',
+                            timeOnlyTitle: 'Nur Zeit',
+                            timeText: 'Zeit',
+                            hourText: 'Stunde',
+                            minuteText: 'Minute',
+                            secondText: 'Sekunde',
+                            currentText: 'Aktuelles Datum',
+                            ampm: false,
+                            month: 'Monat',
+                            week: 'Woche',
+                            day: 'Tag',
+                            allDayText: 'Ganzer Tag'
+                        };
+                    </script>
+
+                    <style type="text/css">
+                        .value {
+                            font-weight: bold;
+                        }
+                    </style>
+
+
+                    
+                   <p:breadCrumb>
+    <p:menuitem value="Categories" url="#" />
+    <p:menuitem value="Sports" url="#" />
+    <p:menuitem value="Basketball" url="#" />
+    <p:menuitem value="NBA" url="#" />
+    <p:menuitem value="Teams" url="#" />
+    <p:menuitem value="L.A. Lakers" url="#" />
+    <p:menuitem value="Roster" url="#" />
+    <p:menuitem value="Kobe Bryant" url="#" />
+</p:breadCrumb>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                    Footer
+                    
+                    <h:form>   
+    <p:growl id="growl" showDetail="true" sticky="true" />  
+       
+    <p:panel header="Growl">  
+        <h:panelGrid columns="2" cellpadding="5">  
+            <p:outputLabel for="msg" value="Message:" />   
+            <p:inputText id="msg" value="#{growlView.message}" required="true" />  
+        </h:panelGrid>  
+   
+        <p:commandButton value="Save" action="#{growlView.saveMessage}" update="@form" />
+    </p:panel>     
+</h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                    <p:menu>
+                        <p:submenu label="Resources">
+                            <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                            <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                            <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                            <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                        </p:submenu>
+
+                    </p:menu>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    <style type="text/css">
+                        .imagebox a{
+                            margin-left:10px;
+                        }
+                    </style>
+<h:form>
+    <p:panel id="panel" header="New User">
+ 
+        <p:messages id="msgs" />
+ 
+        <h:panelGrid columns="3" cellpadding="5">
+            <p:outputLabel for="firstname" value="Firstname:" />
+            <p:inputText id="firstname" value="#{userView.firstname}" required="true" label="Firstname">
+                <f:validateLength minimum="2" />
+            </p:inputText>
+            <p:message for="firstname" display="icon" />
+ 
+            <p:outputLabel for="lastname" value="Lastname:" />
+            <p:inputText id="lastname" value="#{userView.lastname}" label="Lastname" required="true">
+                <f:validateLength minimum="2" />
+                <p:ajax update="msgLastname" event="keyup" />
+            </p:inputText>
+            <p:message for="lastname" id="msgLastname" display="icon" />
+ 
+        </h:panelGrid>
+ 
+        <p:commandButton value="Save" update="panel" action="#{userView.save}" icon="pi pi-check" />
+    </p:panel>
+</h:form>
+
+                    <h3 style="margin-top: 0">Images</h3>
+                    <p:lightBox styleClass="imagebox" id="lighbox1">  
+                        <h:outputLink value="../../resources/demo/images/nature/nature1.jpg" title="Nature 1">  
+                            <h:graphicImage name="/demo/images/nature/nature1.jpg" id="nature1" style="height: 77px; width: 100px" />  
+                        </h:outputLink>
+
+                        <h:outputLink value="../../resources/demo/images/nature/nature2.jpg" title="Nature 2">  
+                            <h:graphicImage name="/demo/images/nature/nature2.jpg" id="nature2" style="height: 77px; width: 100px" />  
+                        </h:outputLink>
+
+                        <h:outputLink value="../../resources/demo/images/nature/nature3.jpg" title="Nature 3">  
+                            <h:graphicImage name="/demo/images/nature/nature3.jpg" id="nature3" style="height: 77px; width: 100px" />  
+                        </h:outputLink>
+
+                        <h:outputLink value="../../resources/demo/images/nature/nature4.jpg" title="Nature 4">  
+                            <h:graphicImage name="/demo/images/nature/nature4.jpg" id="nature4" style="height: 77px; width: 100px" />  
+                        </h:outputLink>
+                    </p:lightBox>
+
+                    <h3>Inline</h3>
+                    <p:lightBox id="lighbox2">
+                        <h:outputLink value="#">
+                            <h:outputText value="Video Content" />
+                        </h:outputLink>
+
+                        <f:facet name="inline">
+                            <p:media value="http://vimeo.com/moogaloop.swf?clip_id=87780794"  width="400" height="225" player="flash" />
+                        </f:facet>
+                    </p:lightBox>
+
+                    <h3>IFrame</h3>
+                    <p:lightBox iframe="true" id="lighbox3">
+                        <h:outputLink value="http://www.primefaces.org" title="PrimeFaces HomePage">
+                            <h:outputText value="PrimeFaces HomePage" />
+                        </h:outputLink>
+                    </p:lightBox>  
+                    
+                    <h:form id="form">
+                        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel for="inline" value="Inline:" />
+                            <p:calendar id="inline" value="#{calendarView.date1}" mode="inline" />
+
+                            <p:outputLabel for="popup" value="Popup:" />
+                            <p:calendar id="popup" value="#{calendarView.date2}" />
+
+                            <p:outputLabel for="button" value="Button:" />
+                            <p:calendar id="button" value="#{calendarView.date3}" showOn="button" />
+
+                            <p:outputLabel for="event" value="Select Event:" />
+                            <p:calendar id="event" value="#{calendarView.date4}">
+                                <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="msgs" />
+                            </p:calendar>
+
+                            <p:outputLabel for="german" value="German:" />
+                            <p:calendar id="german" value="#{calendarView.date5}" locale="de" navigator="true" pattern="yyyy-MMM-dd" />
+
+                            <p:outputLabel for="germanV2" value="German (other Pattern):" />
+                            <p:calendar id="germanV2" value="#{calendarView.dateDe}" locale="de" navigator="true" pattern="dd.MM.yyyy" />
+
+                            <p:outputLabel for="restricted" value="Restricted:" />
+                            <p:calendar id="restricted" value="#{calendarView.date6}" mindate="4/1/14" maxdate="7/1/14" />
+
+                            <p:outputLabel for="multi" value="Multiple:" />
+                            <p:calendar id="multi" value="#{calendarView.date7}" pages="3" />
+
+                            <p:outputLabel for="effect" value="Effect:" />
+                            <p:calendar id="effect" value="#{calendarView.date8}" effect="fold" />
+
+                            <p:outputLabel for="mask" value="Mask:" />
+                            <p:calendar id="mask" value="#{calendarView.date9}" pattern="dd-MM-yyyy" mask="true" />
+
+                            <p:outputLabel for="datetime" value="Datetime:" />
+                            <p:calendar id="datetime" value="#{calendarView.date10}" pattern="MM/dd/yyyy HH:mm:ss" />
+
+                            <p:outputLabel for="dateTimeDe" value="Datetime (German):" />
+                            <p:calendar id="dateTimeDe" value="#{calendarView.dateTimeDe}" locale="de" pattern="dd.MM.yyyy HH:mm" />
+
+                            <p:outputLabel for="time" value="Time Only:" />
+                            <p:calendar id="time" value="#{calendarView.date11}" pattern="HH:mm" timeOnly="true"  />
+                        </h:panelGrid>
+
+                        <p:commandButton value="Submit" update="msgs" action="#{calendarView.click}" icon="pi pi-check" />
+
+                        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                            <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                                <h:outputText value="Inline:" />
+                                <h:outputText value="#{calendarView.date1}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Popup:" />
+                                <h:outputText value="#{calendarView.date2}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Button:" />
+                                <h:outputText value="#{calendarView.date3}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Event:" />
+                                <h:outputText value="#{calendarView.date4}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="German:" />
+                                <h:outputText value="#{calendarView.date5}">
+                                    <f:convertDateTime pattern="yyyy-MMM-dd" />
+                                </h:outputText>
+
+                                <h:outputText value="German (other Pattern):" />
+                                <h:outputText value="#{calendarView.date5}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Restricted:" />
+                                <h:outputText value="#{calendarView.date6}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Multiple:" />
+                                <h:outputText value="#{calendarView.date7}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Effect:" />
+                                <h:outputText value="#{calendarView.date8}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Mask:" />
+                                <h:outputText value="#{calendarView.date9}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputText>
+
+                                <h:outputText value="Datetime:" />
+                                <h:outputText value="#{calendarView.date10}">
+                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                </h:outputText>
+
+                                <h:outputText value="Datetime (German):" />
+                                <h:outputText value="#{calendarView.dateTimeDe}">
+                                    <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                                </h:outputText>
+
+                                <h:outputText value="Time Only:" />
+                                <h:outputText value="#{calendarView.date11}">
+                                    <f:convertDateTime pattern="HH:mm" />
+                                </h:outputText>
+                            </p:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+</html>
+
